@@ -1,49 +1,55 @@
-﻿using FreakyFashionServices.Models.Domain;
+﻿using FreakyFashionServices.Catalog.Models;
+using FreakyFashionServices.Models.Domain;
 using FreakyFashionServices.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Threading.Tasks;
 
 namespace FreakyFashionServices.Catalog.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private static readonly List<Product> Items = new List<Product>
+        public ApplicationDbContext _context { get; }
+        public ProductsController(ApplicationDbContext context)
         {
-           new Product(
-                id: 1,
-                title: "Black T-Shirt",
-                description: "Lorem ipsum dolor",
-                price: 299,
-                availableStock: 12)
-        };
+            _context = context;
+        }
 
-        // GET /catalogs/item
-        [HttpGet("{item}")]
-        public ActionResult <ProductDto> GetItem(string title)
+
+        // GET /api/products
+        [HttpGet]
+        public ActionResult<IEnumerable<Product>> GetProductItems()
         {
-            var foundItem = Items
-                .FirstOrDefault(x => x.Title == title);
+            return _context.Products;
+        }
 
-            if(foundItem is null)
+
+        // GET /api/products/1
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        {
+            //var foundProducts = _context.Products.FirstOrDefault(x => x.Id == id);
+            var foundProducts = await _context.Products.FindAsync(id);
+
+            if (foundProducts is null)
             {
-                return NotFound(); // 404 Error
+                return NotFound();
             }
+
             var dto = new ProductDto
             {
-                Id = foundItem.Id,
-                Title = foundItem.Title,
-                Description = foundItem.Description,
-                Price = foundItem.Price,
-                AvailableStock = foundItem.AvailableStock
+                Id = foundProducts.Id,
+                Title = foundProducts.Title,
+                Description = foundProducts.Description,
+                Price = foundProducts.Price,
+                AvailableStock = foundProducts.AvailableStock
             };
-            return dto;
-
+            return Ok(dto);
         }
+
+
     }
 }

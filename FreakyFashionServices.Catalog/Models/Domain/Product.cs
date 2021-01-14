@@ -1,13 +1,15 @@
 ﻿namespace FreakyFashionServices.Models.Domain
 {
-     class Product
+     public class Product
     {
-        public int Id { get; }
-        public string Title { get; }
-        public string Description { get; }
-        public int Price { get; }
-        public int AvailableStock { get; }
+        public int Id { get; protected set; }
+        public string Title { get; protected set; }
+        public string Description { get; protected set; }
+        public int Price { get; protected set; }
+        public int AvailableStock { get; protected set; }
 
+        public Product()
+        { }
         public Product(int id, string title, string description, int price, int availableStock)
         {
             Id= id;
@@ -15,6 +17,7 @@
             Description = description;
             Price = price;
             AvailableStock = availableStock;
+            
         }
     }
 }
