@@ -27,7 +27,7 @@ namespace FreakyFashionServices.Catalog.Controllers
         }
 
 
-        // GET /api/products/1
+        // GET /api/products/id
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
@@ -47,7 +47,7 @@ namespace FreakyFashionServices.Catalog.Controllers
                 Price = foundProducts.Price,
                 AvailableStock = foundProducts.AvailableStock
             };
-            return Ok(dto);
+            return Ok(dto); // 200
         }
 
 
