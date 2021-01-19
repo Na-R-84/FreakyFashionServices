@@ -30,7 +30,8 @@ namespace FreakyFashionServices.Basket.Controllers
                 cartDto.Id, serialized, options);
             options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(60);
             options.SlidingExpiration = TimeSpan.FromSeconds(60);
-            return Ok(); // 201
+
+            return NoContent();  // 204 No Content
         }
 
 
@@ -38,21 +39,21 @@ namespace FreakyFashionServices.Basket.Controllers
         // GET /api/basket/{id}
 
         [HttpGet("{id}")]
-        public async Task<string> Get(string id)
+        public async Task<IActionResult> GetBasketById(string id)
         {
             var cacheKey = id;
             var existingBasket = cache.GetString(cacheKey);
 
-            if (!string.IsNullOrEmpty(existingBasket))
+            if (existingBasket is null)
             {
-                return existingBasket;
+                return NotFound();
             }
             else
             {
-                return "Cart empty";
+                return Ok(existingBasket); // 200 Ok
             }
         }
-        //public async Task<IActionResult> CreateBasket(int id, BasketDto basketDto)
+        //public async Task<IActionResult> GetBasketById(string id)
         //{
         //    var options = new DistributedCacheEntryOptions();
         //    var serialized = JsonSerializer.Serialize(basketDto);

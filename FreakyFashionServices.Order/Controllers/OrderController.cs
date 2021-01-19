@@ -1,39 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FreakyFashionServices.Order.Models;
+using FreakyFashionServices.Order.Models.Data;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FreakyFashionServices.Order.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+
     public class OrderController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
-        private readonly ILogger<OrderController> _logger;
+        private readonly IHttpClientFactory _clientFactory;
+        private readonly ApplicationDbContext _context;
 
-        public OrderController(ILogger<OrderController> logger)
+        public OrderController(IHttpClientFactory clientFactory, ApplicationDbContext context)
         {
-            _logger = logger;
+            _clientFactory = clientFactory;
+            _context = context;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        // POST: api/order
+        [HttpPost]
+        public async Task<ActionResult<Orders>> PostOrders(Orders order)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            new HttpRequestMessage(HttpMethod.Get, "http://localhost:44316/api/basket/" + order.CustomerIdentifier);
+
+            var orders = new Orders(
+                    customerIdentifier: order.CustomerIdentifier,
+                    firstName: order.FirstName,
+                    lastName: order.LastName
+                    );
+
+            _context.orders.Add(orders);
+            await _context.SaveChangesAsync();
+
+            return Ok(orders.Id);
         }
+
     }
 }

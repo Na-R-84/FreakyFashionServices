@@ -1,50 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductPrice.Models.Domain;
-using ProductPrice.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProductPrice.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[api/controller]")]
     public class ProductPriceController : ControllerBase
     {
-        private static readonly List<Product> Products = new List<Product>
-        {
-            new Product(articleNr: "ABC123"),
-            new Product(articleNr: "BCA123"),
-            new Product(articleNr: "AAA123"),
-            new Product(articleNr: "BBB123"),
-            new Product(articleNr: "CCC123")
-        };
+
 
         //GET /api/productprice?products=ABC123,BCA321,AAA123,BBB123
         [HttpGet("{articleNr}")]
-        public ActionResult<ProductDto> Get(string articleNr)
+        public IEnumerable<Product> Get(string products)
         {
-            var founfProduct = Products.FirstOrDefault(x => x.ArticleNr == articleNr);
+            var productList = products.Split(',').ToList();
 
-            if (founfProduct is null)
+            List<Product> response = new List<Product>();
+            Random itme = new Random();
+
+            foreach (var item in productList)
             {
-                return NotFound();
-
+                response.Add(new Product() { ArticleNr = item, Price = itme.Next(29, 999) });
             }
 
-            foreach (var product in Products)
-            {
-                var item = new Random();
-                product.RandomPrice = item.Next();
-            };
-
-            var dto = new ProductDto
-            {
-                ArticleNr = founfProduct.ArticleNr,
-                RandomPrice = founfProduct.RandomPrice
-            };
-
-
+            return response;
         }
 
 

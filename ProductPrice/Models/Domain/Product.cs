@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 {
     public class Product
     {
-        public Product( string articleNr)
+        public Product()
         {
-            ArticleNr = articleNr;
         }
 
-        public int RandomPrice { get; set; }
+        public Product(string articleNr, int price)
+        {
+            ArticleNr = articleNr;
+            Price = price;
+        }
+
+        public int Price { get; set; }
         public string ArticleNr { get; set; }
 
     }
