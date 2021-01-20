@@ -12,28 +12,27 @@ namespace FreakyFashionServices.Order.Controllers
     public class OrderController : ControllerBase
     {
 
-        private readonly IHttpClientFactory _clientFactory;
         private readonly ApplicationDbContext _context;
 
-        public OrderController(IHttpClientFactory clientFactory, ApplicationDbContext context)
+
+        public OrderController( ApplicationDbContext context)
         {
-            _clientFactory = clientFactory;
             _context = context;
         }
 
         // POST: api/order
         [HttpPost]
-        public async Task<ActionResult<Orders>> PostOrders(Orders order)
+        public async Task<ActionResult<Orders>> OrdersContents(Orders order)
         {
-            new HttpRequestMessage(HttpMethod.Get, "http://localhost:44316/api/basket/" + order.CustomerIdentifier);
+            new HttpRequestMessage(HttpMethod.Get, "http://localhost:61034/basket/" + order.CustomerId);
 
             var orders = new Orders(
-                    customerIdentifier: order.CustomerIdentifier,
+                    customerId: order.CustomerId,
                     firstName: order.FirstName,
                     lastName: order.LastName
                     );
 
-            _context.orders.Add(orders);
+            _context.Orders.Add(orders);
             await _context.SaveChangesAsync();
 
             return Ok(orders.Id);

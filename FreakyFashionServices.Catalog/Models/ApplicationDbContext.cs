@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace FreakyFashionServices.Catalog.Models
 {
 
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
 
