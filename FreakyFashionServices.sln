@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.Produ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.Order", "FreakyFashionServices.Order\FreakyFashionServices.Order.csproj", "{31926D3E-27A6-4BF6-84DC-6FFCEAF76093}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.API Gateway", "FreakyFashionServices.API Gateway\FreakyFashionServices.API Gateway.csproj", "{3AC51114-0F20-430F-B74E-EF7A8FB106ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{31926D3E-27A6-4BF6-84DC-6FFCEAF76093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31926D3E-27A6-4BF6-84DC-6FFCEAF76093}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31926D3E-27A6-4BF6-84DC-6FFCEAF76093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC51114-0F20-430F-B74E-EF7A8FB106ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC51114-0F20-430F-B74E-EF7A8FB106ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC51114-0F20-430F-B74E-EF7A8FB106ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC51114-0F20-430F-B74E-EF7A8FB106ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

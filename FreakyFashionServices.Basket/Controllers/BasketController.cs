@@ -5,7 +5,7 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace FreakyFashionServices.Basket.Controllers
+namespace FreakyFashionServices.API_Gateway.Basket.Controllers
 {
     [ApiController]
     [Route("[controller]")]
