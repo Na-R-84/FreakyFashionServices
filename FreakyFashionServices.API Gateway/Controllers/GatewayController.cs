@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace FreakyFashionServices.Gateway.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class GatewayController : ControllerBase
     {
 
@@ -50,7 +50,7 @@ namespace FreakyFashionServices.Gateway.Controllers
             foreach (var product in products)
             {
                 if (String.IsNullOrEmpty(articleNumberList))
-                    articleNumberList += product.Id;
+                    articleNumberList += product.ArticleNr;
                 else
                     articleNumberList += "," + product.ArticleNr;
             }
@@ -68,7 +68,7 @@ namespace FreakyFashionServices.Gateway.Controllers
 
             foreach (var item in prices)
             {
-                var product = products.FirstOrDefault(p => p.ArticleNr == item.ArticleNr);
+                var product = products.FirstOrDefault(x => x.ArticleNr == item.ArticleNr);
 
                 product.Price = item.Price;
             }
@@ -84,7 +84,7 @@ namespace FreakyFashionServices.Gateway.Controllers
 
             var serialisedBasket = JsonSerializer.Serialize(items);
 
-            var request = new HttpRequestMessage(HttpMethod.Put, "https://localhost:44316/api/basket/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Put, "https://localhost:61034/basket/" + id);
 
             request.Headers.Add("Accept", "application/json");
 
@@ -104,7 +104,7 @@ namespace FreakyFashionServices.Gateway.Controllers
             var serialisedOrder = JsonSerializer.Serialize(order);
 
             // api/order
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:62563/api/order/");
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:49410/order/");
 
             request.Headers.Add("Accept", "application/json");
 

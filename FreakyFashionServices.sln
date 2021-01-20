@@ -13,6 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.Order
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.API Gateway", "FreakyFashionServices.API Gateway\FreakyFashionServices.API Gateway.csproj", "{3AC51114-0F20-430F-B74E-EF7A8FB106ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api-Gateway", "Api-Gateway", "{DBCEB879-88C7-4E5A-BEF3-9945C3941DE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{1CE9B02C-9432-4BD8-90E2-68B06E0D4E62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{C587E600-221D-4559-8403-5441B0BF64C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{5556D5B3-5409-409E-846F-A9EBFE0ED19D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductPrice", "ProductPrice", "{7C21AF13-AAC5-4784-8C66-528CF00C14C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +52,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09A583F9-D9FB-4C57-88A9-E3148E7EC8CC} = {C587E600-221D-4559-8403-5441B0BF64C0}
+		{C5DBD400-11DB-43B0-9DB5-27F2C6BBFE02} = {1CE9B02C-9432-4BD8-90E2-68B06E0D4E62}
+		{ABBF2FE0-EEF7-4DF1-8942-172C2142604E} = {7C21AF13-AAC5-4784-8C66-528CF00C14C9}
+		{31926D3E-27A6-4BF6-84DC-6FFCEAF76093} = {5556D5B3-5409-409E-846F-A9EBFE0ED19D}
+		{3AC51114-0F20-430F-B74E-EF7A8FB106ED} = {DBCEB879-88C7-4E5A-BEF3-9945C3941DE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46F5DC6D-09CE-4298-B2E3-3DCE627B3C4D}

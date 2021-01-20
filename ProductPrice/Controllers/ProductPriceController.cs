@@ -8,29 +8,31 @@ using System.Linq;
 namespace ProductPrice.Controllers
 {
     [ApiController]
-    [Route("[api/controller]")]
+    [Route("[controller]")]
     public class ProductPriceController : ControllerBase
     {
 
 
-        //GET /api/productprice?products=ABC123,BCA321,AAA123,BBB123
-        [HttpGet("{articleNr}")]
-        public IEnumerable<Product> Get(string products)
+
+        [HttpGet]
+        public IEnumerable<Product> Get(string articleNumbers)
         {
-            var productList = products.Split(',').ToList();
 
-            List<Product> response = new List<Product>();
-            Random itme = new Random();
+            var products = articleNumbers.Split(',').ToList();
 
-            foreach (var item in productList)
+            List<Product> articles = new List<Product>();
+            Random rnd = new Random();
+
+            foreach (var item in products)
             {
-                response.Add(new Product() { ArticleNr = item, Price = itme.Next(29, 999) });
+                articles.Add(new Product()
+                {
+                    ArticleNr = item,
+                    Price = rnd.Next(29, 999)
+                });
             }
+            return articles;
 
-            return response;
         }
-
-
-
     }
 }

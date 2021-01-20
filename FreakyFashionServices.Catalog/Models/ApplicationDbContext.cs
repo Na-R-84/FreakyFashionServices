@@ -24,10 +24,10 @@ namespace FreakyFashionServices.Catalog.Models
         
             var products = new List<Product>
             {
-            new Product(1, "Black slim T-shirt", "Lorem Ipsum dollar ", 300, 20),
-            new Product(2, "Pink slim T-shirt", "Lorem Ipsum dollar ", 700, 20),
-            new Product(3, "Blue slim T-shirt", "Lorem Ipsum dollar ", 500, 10),
-            new Product(4, "Gold slim T-shirt", "Lorem Ipsum dollar ", 100, 14)
+            new Product(1, "Black slim T-shirt", "Lorem Ipsum dollar ", 300,"r333", 20),
+            new Product(2, "Pink slim T-shirt", "Lorem Ipsum dollar ", 700,"d211", 20),
+            new Product(3, "Blue slim T-shirt", "Lorem Ipsum dollar ", 500,"t55", 10),
+            new Product(4, "Gold slim T-shirt", "Lorem Ipsum dollar ", 100,"qwrg", 14)
             };
             products.ForEach(x => modelBuilder.Entity<Product>().HasData(x));
         }
