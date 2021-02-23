@@ -3,7 +3,6 @@ using FreakyFashionServices.Models.Domain;
 using FreakyFashionServices.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-
 using System.Threading.Tasks;
 
 namespace FreakyFashionServices.Catalog.Controllers
@@ -45,7 +44,8 @@ namespace FreakyFashionServices.Catalog.Controllers
                 Title = foundProducts.Title,
                 Description = foundProducts.Description,
                 Price = foundProducts.Price,
-                AvailableStock = foundProducts.AvailableStock
+                AvailableStock = foundProducts.AvailableStock,
+                ArticleNr= foundProducts.ArticleNr
             };
             return Ok(dto); // 200
         }

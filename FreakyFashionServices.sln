@@ -13,16 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.Order
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreakyFashionServices.API Gateway", "FreakyFashionServices.API Gateway\FreakyFashionServices.API Gateway.csproj", "{3AC51114-0F20-430F-B74E-EF7A8FB106ED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api-Gateway", "Api-Gateway", "{DBCEB879-88C7-4E5A-BEF3-9945C3941DE3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{1CE9B02C-9432-4BD8-90E2-68B06E0D4E62}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{C587E600-221D-4559-8403-5441B0BF64C0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{5556D5B3-5409-409E-846F-A9EBFE0ED19D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductPrice", "ProductPrice", "{7C21AF13-AAC5-4784-8C66-528CF00C14C9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

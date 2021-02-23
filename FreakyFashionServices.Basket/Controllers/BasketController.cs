@@ -5,7 +5,7 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace FreakyFashionServices.API_Gateway.Basket.Controllers
+namespace FreakyFashionServices.Basket.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -19,38 +19,41 @@ namespace FreakyFashionServices.API_Gateway.Basket.Controllers
         }
 
         //PUT /api/basket/{id}
-        [HttpPut("{id}")]
 
-        public async Task<IActionResult> CreateBasketContents(string id, CartDto cartDto)
+        [HttpPut("{basketId}")]
+
+        public async Task<IActionResult> AddCartContents(string basketId, BasketDto basketDto)
         {
             var options = new DistributedCacheEntryOptions();
-            var serialized = JsonSerializer.Serialize(cartDto);
 
-            await cache.SetStringAsync(
-                cartDto.Id, serialized, options);
             options.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(60);
             options.SlidingExpiration = TimeSpan.FromSeconds(60);
 
-            return NoContent();  // 204 No Content
-        }
+            var serializedData = JsonSerializer.Serialize(basketDto);
 
+            await cache.SetStringAsync(
+                basketDto.BasketId,
+                serializedData,
+                options);
+
+            return Ok();
+        }
 
 
         // GET /api/basket/{id}
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetBasketById(string id)
+        [HttpGet("{basketId}")]
+        public async Task<string> Get(string basketId)
         {
-            var cacheKey = id;
+            var cacheKey = basketId;
             var existingBasket = cache.GetString(cacheKey);
-
-            if (existingBasket is null)
+            if (!string.IsNullOrEmpty(existingBasket))
             {
-                return NotFound();
+                return existingBasket;
             }
             else
             {
-                return Ok(existingBasket); // 200 Ok
+                return "Nothing in basket.";
             }
         }
         //public async Task<IActionResult> GetBasketById(string id)

@@ -1,8 +1,5 @@
 ﻿using FreakyFashionServices.Models.Domain;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 
 
@@ -21,7 +18,10 @@ namespace FreakyFashionServices.Catalog.Models
         {
             base.OnModelCreating(modelBuilder);
 
-        
+            SeedProducts(modelBuilder);
+        }
+        private static void SeedProducts(ModelBuilder modelBuilder) 
+        { 
             var products = new List<Product>
             {
             new Product(1, "Black slim T-shirt", "Lorem Ipsum dollar ", 300,"r333", 20),

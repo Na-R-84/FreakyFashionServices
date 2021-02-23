@@ -26,6 +26,7 @@ namespace FreakyFashionServices.Catalog
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreakyFashionServices.Catalog", Version = "v1" });
