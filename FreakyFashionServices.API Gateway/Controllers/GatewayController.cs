@@ -1,5 +1,6 @@
 ﻿using FreakyFashionServices.API_Gateway.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace FreakyFashionServices.Gateway.Controllers
 
             // get products
 
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44361/api/Products");
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:49413/catalog");
 
             request.Headers.Add("Accept", "application/json");
 
@@ -55,7 +56,7 @@ namespace FreakyFashionServices.Gateway.Controllers
 
             // get price
 
-            request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:51325/PriceCatalog" + "?articleNumbers=" + articleNumbers);
+            request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:63992/productprice" + "?articleNumbers=" + articleNumbers);
 
             request.Headers.Add("Accept", "application/json");
 
@@ -74,15 +75,16 @@ namespace FreakyFashionServices.Gateway.Controllers
             return productDto;
         }
 
-        // PUT /carts/{cartId}
-        [HttpPut("{cartId}")]
-        public async Task<IActionResult> AddToCart(string cartId, CartDto cartDto)
+        // PUT /basket/{basketId}
+        [HttpPut("{basketId}")]
+        public async Task<IActionResult> AddToCart(string basketId, CartDto cartDto)
         {
-            var request = new HttpRequestMessage(HttpMethod.Put, "http://localhost:56233/carts/" + cartId);
+            var request = new HttpRequestMessage(HttpMethod.Put, "https://localhost:61034/basket/" + basketId);
 
             request.Headers.Add("Accept", "application/json");
 
             var json = JsonConvert.SerializeObject(cartDto);
+            
 
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -96,7 +98,7 @@ namespace FreakyFashionServices.Gateway.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrder(int customerId, OrderDto order)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:52489/order/" + customerId);
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:49410/order/" + customerId);
 
             request.Headers.Add("Accept", "application/json");
 
